@@ -20,11 +20,112 @@
 
 \subsection{OpenBSD}
 
+% Fill this in based on a basic version from the openBSD website.
+
+% Maybe add the user to the sudoers file (security issues?).
+
 \subsection{Python}
+
+To install python, either su - to the root account or the logged in user must
+sudoer permissions.
+
+% I'm going to install based on the python package for simplicity's sake.
+\begin{enumerate}
+
+\item
+Export the \verb=PKG_PATH= variable to make life easy.
+% The path for the Boulder, CO mirror: http://ftp3.usa.openbsd.org/pub/OpenBSD/5.4/packages/amd64/
+\begin{verbatim}
+export PKG_PATH=http://<mirror_url>/pub/OpenBSD/5.4/packages/<arch>/
+\end{verbatim}
+
+\item
+Run \verb=pkg_add= to install python.  The sudo command will need to be
+prepended to this command if using that method or privilege escalation.
+\begin{verbatim}
+pkg_add python-2.7.5
+\end{verbatim}
+
+\item
+When the installation completes, make the symlinks for python.
+\begin{verbatim}
+ln -sf /usr/local/bin/python2.7 /usr/local/bin/python
+ln -sf /usr/local/bin/python2.7-2to3 /usr/local/bin/2to3
+ln -sf /usr/local/bin/python2.7-config /usr/local/bin/python-config
+ln -sf /usr/local/bin/pydoc2.7  /usr/local/bin/pydoc
+\end{verbatim}
+
+\end{enumerate}
 
 \subsection{Go}
 
+To install go, either su - to the root account or the logged in user must
+sudoer permissions.
+
+% I'm going to install based on the python package for simplicity's sake.
+\begin{enumerate}
+
+\item
+Export the \verb=PKG_PATH= variable to make life easy.
+% The path for the Boulder, CO mirror: http://ftp3.usa.openbsd.org/pub/OpenBSD/5.4/packages/amd64/
+\begin{verbatim}
+export PKG_PATH=http://<mirror_url>/pub/OpenBSD/5.4/packages/<arch>/
+\end{verbatim}
+
+\item
+Run \verb=pkg_add= to install go.  The sudo command will need to be prepended
+to this command if using that method or privilege escalation.
+\begin{verbatim}
+pkg_add go
+\end{verbatim}
+
+\item
+When the installation completes, check to make sure go is working correctly..
+\begin{verbatim}
+go version
+\end{verbatim}
+
+\end{enumerate}
+
 \subsection{Least Authority File System}
+% Grab the latest version.  Probably should have a "latest" link on the tahoe
+% website.
+% https://tahoe-lafs.org/source/tahoe-lafs/releases/allmydata-tahoe-1.10.0.zip
+
+% I'm going to install this service as root for now.  It will most likely get
+% a user specific to tahoe, or get wrapped up under the apache/www user.
+To install tahoe-lafs, either su - to the root account or the logged in user must
+sudoer permissions.
+
+% I'm going to install based on the python package for simplicity's sake.
+\begin{enumerate}
+
+\item
+Download the latest tarball from the tahoe-lafs website.  Make sure to grab a
+\verb=.tar.bz2= or \verb=.tar.gz= file.
+% The path for the Boulder, CO mirror: http://ftp3.usa.openbsd.org/pub/OpenBSD/5.4/packages/amd64/
+% FIXME: This looks like ass as it overflows the right margin.  Find a better way to
+% way to format this line:
+\begin{verbatim}
+lynx https://tahoe-lafs.org/source/tahoe-lafs/releases/allmydata-tahoe-1.10.0.tar.bz2
+\end{verbatim}
+Press ''d'' to download, then select ''Save to disk'' once the file has
+downloaded, and press ''q'' then ''y'' to quit \verb=lynx=.
+
+\item
+Untarball the downloaded file.
+\begin{verbatim}
+tar xjf allmydata-tahoe-1.10.0.tar.bz2
+\end{verbatim}
+
+\item
+Change to the freshly unpacked directory and run the build script.
+\begin{verbatim}
+cd allmydata-tahoe-1.10.0
+python setup.py build
+\end{verbatim}
+
+\end{enumerate}
 
 \subsection{Pond}
 
