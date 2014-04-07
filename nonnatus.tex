@@ -125,6 +125,12 @@ cd allmydata-tahoe-1.10.0
 python setup.py build
 \end{verbatim}
 
+\item
+Run the tests to make sure that the build was successful..
+\begin{verbatim}
+python setup.py trial
+\end{verbatim}
+
 \end{enumerate}
 
 \subsection{Pond}
@@ -132,8 +138,39 @@ python setup.py build
 \section{Configuring the Software}
 
 \subsection{Least Authority File System}
+% Make dir for holding lafs nodes.
+% Refer to https://tahoe-lafs.org/trac/tahoe-lafs/wiki/LocalGrid
+% - Create the introducer.
+% - Start and stop the introducer.
+% - Configure the introducer.
+% - Create the client node.
+% - Configure the client node.
+% - Create the storage node.
+% - Configure the storage node.
+% - Start the three nodes/services.
+
+\begin{enumerate}
+\item
+    Create the node.
+    \begin{verbatim}
+        /root/allmydata-tahoe-1.10.0/bin/tahoe create-node /tank/lafs/
+    \end{verbatim}
+% FIXME: Make a lafs package for openBSD so the full path doesn't need to be
+% used.
+
+\item
+    
+ Please set [client]introducer.furl= in tahoe.cfg!
+ The node cannot connect to a grid without it.
+ Please set [node]nickname= in tahoe.cfg
+\end{enumerate}
 
 \subsection{Pond}
+% Install git.
+% Install mercurial.
+% Make pond user.
+% Install pond server.
+% Configure pond server.
 
 \section{Usage Recommendations}
 
